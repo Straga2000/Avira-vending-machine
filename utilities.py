@@ -5,7 +5,7 @@ from graphics import *
 def idle():
     return None
 
-COLOR_DICT = {"red" : "d63447", "gray" : "f6eedf", "blacker gray" : "d1cebd" }
+COLOR_DICT = {"red" : "#D63447", "gray" : "#F6EEDF", "blacker gray" : "#D1CEBD" }
 
 
 class Button:
@@ -34,17 +34,18 @@ class Button:
         if self.showCounter is True:
             self.textCounter.draw(win)
 
-    def is_pressed(self, p, win):
+    def is_pressed(self, p):
         return self.p1.x < p.x < self.p2.x and self.p1.y < p.y < self.p2.y
 
-    def rect_color(self, win):
+    def rect_color(self, win, color):
+        self.rect.undraw()
+        self.rect.setFill(COLOR_DICT[color])
+        self.rect.draw(win)
 
     def increase_quantity(self, win):
         self.counter += 1
 
-        self.rect.undraw()
-        self.rect.setFill(COLOR_DICT["red"])
-        self.rect.draw(win)
+        self.rect_color(win, "red")
 
         if self.showCounter is True:
             self.textCounter.undraw()
