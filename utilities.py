@@ -52,6 +52,10 @@ class Button:
 
     def increase_quantity(self, win):
         self.counter += 1
+        if self.showCounter is True:
+            self.textCounter.undraw()
+            self.textCounter.setText("Quantity: " + str(self.counter))
+            self.textCounter.draw(win)
 
         self.rect_color(win, "red")
         self.rect_color(win, "blacker gray")
