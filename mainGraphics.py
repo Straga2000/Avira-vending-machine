@@ -45,4 +45,7 @@ system.add_button(Point(1025, 420), Point(1175, 470), False, "Buy")
 system.print_all()
 
 while True:
-    system.get_action()
+    obj = system.get_action()
+    if obj is not None:
+        # functie database
+

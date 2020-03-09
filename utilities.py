@@ -38,6 +38,9 @@ class Button:
         textCounterPos = Point(self.anchor.x, self.anchor.y - (self.p1.y / 2) - 80)
         self.textCounter = Text(textCounterPos, "Quantity: " + str(self.counter))
 
+    def get_text_name(self):
+        return self.text.getText()
+
     def print_obj(self, win):
 
         self.rect.draw(win)
@@ -106,6 +109,7 @@ class Window:
         self.win.setBackground(COLOR_DICT["blacker gray"])
 
         self.addedObjects = []
+        self.boughtList = {}
 
     def add_button(self, p1, p2, id, text=""):
         obj = Button(p1, p2, id, text)
@@ -119,8 +123,6 @@ class Window:
         obj = Entry(anchor, width)
         self.addedObjects.append(obj)
 
-    #def
-
     def get_action(self):
         mouse = self.win.checkMouse()
         if mouse is not None:
@@ -128,7 +130,14 @@ class Window:
                 if obj.name == "button":
                     #print(obj.is_pressed(mouse))
                     if obj.is_pressed(mouse):
-                        obj.increase_quantity(self.win)
+
+                        if obj.get_text_name == "Buy":
+                            obj.increase_quantity(self.win)
+                            return self.boughtList
+                        else:
+                            obj.increase_quantity(self.win)
+                            self.boughtList[obj.get_text_name()] = obj.counter
+        return None
 
     def print_all(self):
         for obj in self.addedObjects:
