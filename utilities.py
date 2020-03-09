@@ -1,8 +1,11 @@
 from graphics import *
 
+# CONSTANTS
 
 def idle():
     return None
+
+COLOR_DICT = {"red" : "d63447", "gray" : "f6eedf", "blacker gray" : "d1cebd" }
 
 
 class Button:
@@ -18,6 +21,8 @@ class Button:
         self.rect = Rectangle(p1, p2)
         self.text = Text(self.anchor, text)
 
+        self.rect.setFill(COLOR_DICT["blacker gray"])
+
         textCounterPos = Point(self.anchor.x, self.anchor.y - (self.p1.y / 2) - 80)
         self.textCounter = Text(textCounterPos, "Quantity: " + str(self.counter))
 
@@ -29,12 +34,18 @@ class Button:
         if self.showCounter is True:
             self.textCounter.draw(win)
 
-    def is_pressed(self, p):
+    def is_pressed(self, p, win):
         return self.p1.x < p.x < self.p2.x and self.p1.y < p.y < self.p2.y
 
+    def rect_color(self, win):
 
     def increase_quantity(self, win):
         self.counter += 1
+
+        self.rect.undraw()
+        self.rect.setFill(COLOR_DICT["red"])
+        self.rect.draw(win)
+
         if self.showCounter is True:
             self.textCounter.undraw()
             self.textCounter.setText("Quantity: " + str(self.counter))
