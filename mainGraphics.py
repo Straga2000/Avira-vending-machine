@@ -12,10 +12,11 @@ def increment(point, x=0, y=0):
 imageLineHeight = 225
 imageHeight = 154
 imageWidth = 88
-imgList = ["antivirusPRIME.png", "antivirusPRO.png", "passwordManager.png", "optimizer.png", "systemSPEEDUP.png", "phantomVPN.png"]
+imgList = ["data/antivirusPRIME.png", "data/antivirusPRO.png",
+           "data/passwordManager.png", "data/optimizer.png", "data/systemSPEEDUP.png", "data/phantomVPN.png"]
 
 buttonHeight = 50
-buttonWidth  = 150
+buttonWidth = 150
 
 buttonWidthTo2 = buttonWidth / 2
 buttonHeightTo2 = buttonHeight / 2
@@ -33,11 +34,12 @@ pLine1 = Point(100, imageLineHeight + 150)
 for i in range(len(imgList)):
     system.add_image(pLine, imgList[i])
     pLine = increment(pLine, incrementer)
-    buttonName = imgList[i].split(".")[0]
-    system.add_button(increment(pLine1, -buttonWidthTo2, -buttonHeightTo2), increment(pLine1, buttonWidthTo2, buttonHeightTo2), True, buttonName)
+    buttonName = imgList[i].split(".")[0].split('/')[-1]
+    system.add_button(increment(pLine1, -buttonWidthTo2, -buttonHeightTo2),
+                      increment(pLine1, buttonWidthTo2, buttonHeightTo2), True, buttonName)
     pLine1 = increment(pLine1, incrementer)
 
-system.add_image(Point(100, 50), "logo1.png")
+system.add_image(Point(100, 50), "data/logo1.png")
 system.add_button(Point(1025, 420), Point(1175, 470), False, "Buy")
 
 system.print_all()
