@@ -9,7 +9,7 @@ def idle():
 # CONSTANTS
 
 
-COLOR_DICT = {"red" : "#CC0000", "gray" : "#F9F2E2", "blacker gray" : "#D1CEBD", "orange" : "#F57B51"}
+COLOR_DICT = {"red" : "#CC0000", "gray" : "#D9D2D2", "blacker gray" : "#D1CEBD", "orange" : "#F57B51", "light pink" : "#e2afaf", "white" : "#FFFFFF", "green" : "#61c616", "yellow" : "#eff692"}
 
 
 class Button:
@@ -25,8 +25,12 @@ class Button:
         self.rect = Rectangle(p1, p2)
         self.text = Text(self.anchor, text)
 
-        self.mainColor = COLOR_DICT["gray"]
-        self.pressedColor = COLOR_DICT["red"]
+
+        self.textColor = COLOR_DICT["white"]
+        self.mainColor = COLOR_DICT["red"]
+        self.pressedColor = COLOR_DICT["yellow"]
+
+        self.text.setTextColor(self.textColor)
 
         self.rect.setFill(self.mainColor)
         self.rect.setWidth(0)
@@ -114,6 +118,8 @@ class Window:
     def add_entry(self, anchor, width):
         obj = Entry(anchor, width)
         self.addedObjects.append(obj)
+
+    #def
 
     def get_action(self):
         mouse = self.win.checkMouse()
