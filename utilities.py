@@ -1,11 +1,15 @@
 from graphics import *
 
-# CONSTANTS
+# FUNCTIONS
+
 
 def idle():
     return None
 
-COLOR_DICT = {"red" : "#D63447", "gray" : "#F6EEDF", "blacker gray" : "#D1CEBD" }
+# CONSTANTS
+
+
+COLOR_DICT = {"red" : "#CC0000", "gray" : "#F9F2E2", "blacker gray" : "#D1CEBD", "orange" : "#F57B51"}
 
 
 class Button:
@@ -21,8 +25,11 @@ class Button:
         self.rect = Rectangle(p1, p2)
         self.text = Text(self.anchor, text)
 
-        self.rect.setFill(COLOR_DICT["blacker gray"])
-        #self.rect.setOutline()
+        self.mainColor = COLOR_DICT["gray"]
+        self.pressedColor = COLOR_DICT["red"]
+
+        self.rect.setFill(self.mainColor)
+        self.rect.setWidth(0)
 
         textCounterPos = Point(self.anchor.x, self.anchor.y - (self.p1.y / 2) - 80)
         self.textCounter = Text(textCounterPos, "Quantity: " + str(self.counter))
@@ -45,7 +52,7 @@ class Button:
         return self.p1.x < p.x < self.p2.x and self.p1.y < p.y < self.p2.y
 
     def rect_color(self, win, color):
-        self.rect.setFill(COLOR_DICT[color])
+        self.rect.setFill(color)
         self.unprint_obj()
         self.print_obj(win)
         time.sleep(0.3)
@@ -57,8 +64,8 @@ class Button:
             self.textCounter.setText("Quantity: " + str(self.counter))
             self.textCounter.draw(win)
 
-        self.rect_color(win, "red")
-        self.rect_color(win, "blacker gray")
+        self.rect_color(win, self.pressedColor)
+        self.rect_color(win, self.mainColor)
 
         if self.showCounter is True:
             self.textCounter.undraw()
@@ -91,6 +98,9 @@ class Window:
         self.width = width
         self.height = height
         self.win = GraphWin(name, self.width, self.height)
+
+        self.win.setBackground(COLOR_DICT["blacker gray"])
+
         self.addedObjects = []
 
     def add_button(self, p1, p2, id, text=""):
