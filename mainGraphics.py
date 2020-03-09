@@ -47,5 +47,5 @@ system.print_all()
 while True:
     obj = system.get_action()
     if obj is not None:
-        # functie database
+        #  functie database
 
