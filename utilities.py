@@ -6,7 +6,7 @@ def idle():
 
 
 class Button:
-    def __init__(self, p1, p2, showCounter, text=""):
+    def __init__(self, p1, p2, showCounter= False, text=""):
 
         self.name = "button"
         self.counter = 0
@@ -35,9 +35,10 @@ class Button:
 
     def increase_quantity(self, win):
         self.counter += 1
-        self.textCounter.undraw()
-        self.textCounter.setText("Quantity: " + str(self.counter))
-        self.textCounter.draw(win)
+        if self.showCounter is True:
+            self.textCounter.undraw()
+            self.textCounter.setText("Quantity: " + str(self.counter))
+            self.textCounter.draw(win)
 
 
 class ImageHolder:
