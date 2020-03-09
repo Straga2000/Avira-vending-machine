@@ -22,6 +22,7 @@ class Button:
         self.text = Text(self.anchor, text)
 
         self.rect.setFill(COLOR_DICT["blacker gray"])
+        #self.rect.setOutline()
 
         textCounterPos = Point(self.anchor.x, self.anchor.y - (self.p1.y / 2) - 80)
         self.textCounter = Text(textCounterPos, "Quantity: " + str(self.counter))
@@ -34,18 +35,26 @@ class Button:
         if self.showCounter is True:
             self.textCounter.draw(win)
 
+    def unprint_obj(self):
+
+        self.rect.undraw()
+        self.text.undraw()
+        self.textCounter.undraw()
+
     def is_pressed(self, p):
         return self.p1.x < p.x < self.p2.x and self.p1.y < p.y < self.p2.y
 
     def rect_color(self, win, color):
-        self.rect.undraw()
         self.rect.setFill(COLOR_DICT[color])
-        self.rect.draw(win)
+        self.unprint_obj()
+        self.print_obj(win)
+        time.sleep(0.3)
 
     def increase_quantity(self, win):
         self.counter += 1
 
         self.rect_color(win, "red")
+        self.rect_color(win, "blacker gray")
 
         if self.showCounter is True:
             self.textCounter.undraw()
