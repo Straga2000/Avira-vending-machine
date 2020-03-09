@@ -47,5 +47,7 @@ system.print_all()
 while True:
     obj = system.get_action()
     if obj is not None:
+        print(obj)
+        time.sleep(0.3)
         #  functie database
 

@@ -131,13 +131,15 @@ class Window:
                     #print(obj.is_pressed(mouse))
                     if obj.is_pressed(mouse):
 
-                        if obj.get_text_name == "Buy":
+                        #print(obj.get_text_name)
+                        if obj.get_text_name() == "Buy":
+                            #print("Da")
                             obj.increase_quantity(self.win)
                             return self.boughtList
                         else:
                             obj.increase_quantity(self.win)
                             self.boughtList[obj.get_text_name()] = obj.counter
-        return None
+        return mouse
 
     def print_all(self):
         for obj in self.addedObjects:
